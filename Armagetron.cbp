@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Armagetron"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Armagetron">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/Armagetron" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Armagetron"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Armagetron/fast">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/Armagetron" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Armagetron/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Image">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/libImage.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Image"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Image/fast">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/libImage.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Image/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/staki/Desktop/RG107-armagetronrg/image.c">
+			<Option target="Image"/>
+		</Unit>
+		<Unit filename="/home/staki/Desktop/RG107-armagetronrg/image.h">
+			<Option target="Image"/>
+		</Unit>
+		<Unit filename="/home/staki/Desktop/RG107-armagetronrg/main.c">
+			<Option target="Armagetron"/>
+		</Unit>
+		<Unit filename="/home/staki/Desktop/RG107-armagetronrg/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,4 @@
+/home/staki/Desktop/RG107-armagetronrg/CMakeFiles/rebuild_cache.dir
+/home/staki/Desktop/RG107-armagetronrg/CMakeFiles/Armagetron.dir
+/home/staki/Desktop/RG107-armagetronrg/CMakeFiles/edit_cache.dir
+/home/staki/Desktop/RG107-armagetronrg/CMakeFiles/Image.dir
