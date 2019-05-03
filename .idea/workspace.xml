@@ -12,10 +12,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c688bdf-ba19-4d7e-b0e6-941db3a0e269" name="Default" comment="Ubaceni igraci i njihovo kretanje">
+    <list default="true" id="3c688bdf-ba19-4d7e-b0e6-941db3a0e269" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Armagetron" beforeDir="false" afterPath="$PROJECT_DIR$/Armagetron" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/Armagetron.dir/C.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Armagetron.dir/C.includecache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/Armagetron.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Armagetron.dir/main.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
@@ -34,11 +33,10 @@
       <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="104" column="20" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+            <state relative-caret-position="230">
+              <caret line="367" selection-start-line="367" selection-end-line="367" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#1555#2459#0" />
                 <element signature="e#3626#3917#0" />
               </folding>
             </state>
@@ -173,7 +171,7 @@
       <workItem from="1556388503709" duration="14870000" />
       <workItem from="1556824761034" duration="14975000" />
       <workItem from="1556875054588" duration="921000" />
-      <workItem from="1556911328413" duration="8081000" />
+      <workItem from="1556911328413" duration="10715000" />
     </task>
     <task id="LOCAL-00001" summary="Readme">
       <created>1556403274945</created>
@@ -182,11 +180,25 @@
       <option name="project" value="LOCAL" />
       <updated>1556403274945</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Ubaceni igraci i njihovo kretanje">
+      <created>1556919498415</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1556919498416</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Ubaceni igraci i njihovo kretanje">
+      <created>1556919755983</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1556919755983</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40398000" />
+    <option name="totallyTimeSpent" value="43032000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="21" width="1368" height="748" extended-state="6" />
@@ -194,10 +206,10 @@
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1669107" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.32484075" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32484075" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32961783" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.272293" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.272293" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -230,7 +242,6 @@
           <caret line="245" column="32" selection-start-line="245" selection-start-column="32" selection-end-line="245" selection-end-column="32" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#1555#2459#0" />
             <element signature="e#3626#3917#0" />
           </folding>
         </state>
@@ -269,7 +280,6 @@
           <caret line="139" column="9" lean-forward="true" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#1555#2459#0" />
             <element signature="e#3626#3917#0" />
           </folding>
         </state>
@@ -308,7 +318,6 @@
           <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#1555#2459#0" />
             <element signature="e#3626#3917#0" />
           </folding>
         </state>
@@ -346,7 +355,6 @@
         <state>
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#1555#2459#0" />
             <element signature="e#3626#3917#0" />
           </folding>
         </state>
@@ -412,11 +420,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="104" column="20" selection-start-line="104" selection-start-column="20" selection-end-line="104" selection-end-column="20" />
+        <state relative-caret-position="230">
+          <caret line="367" selection-start-line="367" selection-end-line="367" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#1555#2459#0" />
             <element signature="e#3626#3917#0" />
           </folding>
         </state>

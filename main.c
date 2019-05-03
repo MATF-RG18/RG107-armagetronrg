@@ -227,7 +227,6 @@ void initialize() {
     /* Unistava se objekat za citanje tekstura iz fajla. */
     image_done(image);
 
-    /* Inicijalizujemo matricu rotacije. */
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
@@ -258,6 +257,7 @@ static void on_display(void) {
 void display(){
 
     /*iscrtavamo zid po zid, koristeci teksuru za zid*/
+    glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, names[0]);
 
     glBegin(GL_QUADS);
@@ -346,17 +346,16 @@ void display(){
         glVertex3f(-50, 0, -50);
     glEnd();
 
+    glDisable(GL_TEXTURE_2D);
+
     GLfloat light_position[] = { 0.6, 1.4, 0.9, 0 };
     GLfloat light_ambient[] = { 0.2, 0.2, 0.2, 1 };
     GLfloat light_diffuse[] = { 0.7, 0.7, 0.7, 1 };
     GLfloat light_specular[] = { 0.9, 0.9, 0.9, 1 };
 
-    GLfloat ambient_coeffs[] = { 0, 0, 0, 1 };
-    GLfloat diffuse_coeffs[] = { 0, 0, 0, 1 };
-    GLfloat specular_coeffs[] = { 0, 0, 0, 1 };
-    GLfloat shininess = 20;
-
     /*Ukljucuje se osvjetljenje i podesavaju parametri svetla */
+
+    glEnable(GL_COLOR_MATERIAL);
     glEnable(GL_LIGHTING);
     glEnable(GL_LIGHT0);
     glLightfv(GL_LIGHT0, GL_POSITION, light_position);
@@ -364,28 +363,20 @@ void display(){
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 
-    /*Podesavaju se parametri materijala */
-    glMaterialfv(GL_FRONT, GL_AMBIENT, ambient_coeffs);
-    glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse_coeffs);
-    glMaterialfv(GL_FRONT, GL_SPECULAR, specular_coeffs);
-    glMaterialf(GL_FRONT, GL_SHININESS, shininess);
-
-    glShadeModel(GL_SMOOTH);
-
     glPushMatrix();
+        glColor3f(0.65,0.96,0.20);
         glTranslatef(xP2, 0.5, zP2);
-        glNormal3f(0,1,0);
         glRotatef(rotateP2, 0, 1, 0);
-        glScalef(0.7,1,2);
+        glScalef(0.5,0.7,2);
         glutSolidCube(1);
     glPopMatrix();
 
 
     glPushMatrix();
+        glColor3f(0.93, 0.16, 0.22);
         glTranslatef(xP1, 0.5, zP1);
-        glNormal3f(0,1,0);
         glRotatef(rotateP1, 0, 1, 0);
-        glScalef(0.7,1,2);
+        glScalef(0.5,0.7,2);
         glutSolidCube(1);
     glPopMatrix();
 }
