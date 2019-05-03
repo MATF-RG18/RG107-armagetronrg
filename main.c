@@ -62,12 +62,12 @@ int main(int argc, char **argv)
 
 
 static void on_keyboard(unsigned char key, int x, int y) {
+    printf("%d %d\n", x, y);
     /*klikom na esc dugme, izlazi se iz programa*/
     switch (key) {
         case 27:
             /* Zavrsava se program. */
             exit(0);
-            break;
         case 'a':
         case 'A':
             /*p2 skreni levo*/
@@ -101,6 +101,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
 }
 
 static void on_keyboardSpecial(int key, int x, int y) {
+    printf("%d %d\n", x, y);
     switch (key) {
         case 27:
             /* Zavrsava se program. */
