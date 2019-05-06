@@ -9,7 +9,7 @@
 #define FILENAME1 "./Images/pod.bmp"
 #define TIMER_INTERVAL 80
 #define TIMER_ID 0
-
+#define MAX_LEN 50000
 
 static GLuint names[2];
 
@@ -24,15 +24,25 @@ static void on_timer(int value);
 static void on_display(void);
 void initialize();
 void display();
+void drawWall(int);
+
+typedef struct {
+    float x;
+    float z;
+} Zid;
 
 /*dimenzije prozora*/
 int widthP, heightP;
 float rotateP1, xP1, zP1, xP2, zP2, rotateP2;
 
+Zid zidP1[MAX_LEN], zidP2[MAX_LEN];
+int tackaP1, tackaP2;
+
+
 int main(int argc, char **argv)
 {/* Inicijalizuje se GLUT. */
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DEPTH | GLUT_DOUBLE);
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 
     /* Kreira se prozor. */
     glutInitWindowSize(1500, 1500);
@@ -74,6 +84,9 @@ static void on_keyboard(unsigned char key, int x, int y) {
             if(animation_active){
                 rotateP2 -= 90;
                 rotateP2 = (int)rotateP2 % 360;
+                zidP2[tackaP2].x = xP2;
+                zidP2[tackaP2].z = zP2;
+                tackaP2++;
                 glutPostRedisplay();
                 }
             break;
@@ -83,6 +96,9 @@ static void on_keyboard(unsigned char key, int x, int y) {
             if(animation_active){
                 rotateP2 += 90;
                 rotateP2 = (int)rotateP2 % 360;
+                zidP2[tackaP2].x = xP2;
+                zidP2[tackaP2].z = zP2;
+                tackaP2++;
                 glutPostRedisplay();
                 }
             break;
@@ -112,6 +128,9 @@ static void on_keyboardSpecial(int key, int x, int y) {
             if (animation_active){
                 rotateP1 += 90;
                 rotateP1 = (int)rotateP1 % 360;
+                zidP1[tackaP1].x = xP1;
+                zidP1[tackaP1].z = zP1;
+                tackaP1++;
                 glutPostRedisplay();
                 }
             break;
@@ -121,6 +140,9 @@ static void on_keyboardSpecial(int key, int x, int y) {
             if (animation_active){
                 rotateP1 -= 90;
                 rotateP1 = (int)rotateP1 % 360;
+                zidP1[tackaP1].x = xP1;
+                zidP1[tackaP1].z = zP1;
+                tackaP1++;
                 glutPostRedisplay();
                 }
             break;
@@ -173,6 +195,16 @@ void initialize() {
     xP2 = 0;
     zP2 = 45;
     rotateP2 = 0;
+
+    zidP1[tackaP1].x = xP1;
+    zidP1[tackaP1].z = zP1-1;
+
+    zidP2[tackaP2].x = xP2;
+    zidP2[tackaP2].z = zP2+1;
+
+    tackaP1++;
+    tackaP2++;
+
 
     /* Ukljucuju se teksture. */
     glEnable(GL_TEXTURE_2D);
@@ -247,7 +279,7 @@ static void on_display(void) {
     /*postavljamo poged za igraca 1, donji desni ugao ekrana i iscrtavamo objekte*/
     glViewport(widthP/2, 0, widthP/2, heightP/2);
     glLoadIdentity();
-    gluLookAt(0, 3, -50, 0, 0, 0, 0, 1, 0);
+    gluLookAt(-2, 3, -50, 0, 0, 0, 0, 1, 0);
     display();
     
     /* Postavlja se nova slika u prozor. */
@@ -370,7 +402,7 @@ void display(){
         glScalef(0.5,0.7,2);
         glutSolidCube(1);
     glPopMatrix();
-
+    drawWall(2);
 
     glPushMatrix();
         glColor3f(0.93, 0.16, 0.22);
@@ -379,4 +411,53 @@ void display(){
         glScalef(0.5,0.7,2);
         glutSolidCube(1);
     glPopMatrix();
+    drawWall(1);
+}
+
+void drawWall(int p){
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    if(p==1){
+        glColor4f(0.93, 0.16, 0.22, 0.7);
+        int i = 0;
+        glBegin(GL_TRIANGLES);
+                while(i < tackaP1){
+                    glVertex3f(zidP1[i].x, 0, zidP1[i].z);
+                    glVertex3f(zidP1[i].x, 0.7, zidP1[i].z);
+                    i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
+
+
+                    i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
+                    i == tackaP1 -1 ? glVertex3f(xP1, 0.7, zP1): glVertex3f(zidP1[i+1].x, 0.7, zidP1[i+1].z);
+                    glVertex3f(zidP1[i].x, 0.7, zidP1[i].z);
+
+
+                    i++;
+                    }
+        glEnd();
+
+
+    }
+    if(p==2){
+        glColor4f(0.65,0.96,0.20, 0.7);
+
+        int i = 0;
+        glBegin(GL_TRIANGLES);
+        while(i < tackaP2){
+            glVertex3f(zidP2[i].x, 0, zidP2[i].z);
+            glVertex3f(zidP2[i].x, 0.7, zidP2[i].z);
+            i == tackaP2 -1 ? glVertex3f(xP2, 0, zP2): glVertex3f(zidP2[i+1].x, 0, zidP2[i+1].z);
+
+            i == tackaP2 -1 ? glVertex3f(xP2, 0, zP2): glVertex3f(zidP2[i+1].x, 0, zidP2[i+1].z);
+            i == tackaP2 -1 ? glVertex3f(xP2, 0.7, zP2): glVertex3f(zidP2[i+1].x, 0.7, zidP2[i+1].z);
+            glVertex3f(zidP2[i].x, 0.7, zidP2[i].z);
+
+            i++;
+        }
+        glEnd();
+
+
+    }
+
 }
