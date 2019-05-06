@@ -7,10 +7,14 @@
 
 #define FILENAME0 "./Images/zid.bmp"
 #define FILENAME1 "./Images/pod.bmp"
+/*postavljamo interval tajmera na 80*/
 #define TIMER_INTERVAL 80
+/*tajmer id nam je 0*/
 #define TIMER_ID 0
+/*duzina niza tacaka za iscrtavanje zida*/
 #define MAX_LEN 50000
 
+/*niz imena tekstura*/
 static GLuint names[2];
 
 /* Fleg koji odredjuje stanje tajmera. */
@@ -23,9 +27,12 @@ static void on_reshape(int width, int height);
 static void on_timer(int value);
 static void on_display(void);
 void initialize();
+/*deklaracija funkcija koje ce pozivati neke od kolbek f-ja*/
 void display();
 void drawWall(int);
 
+
+/*struktura za x i z koordinate zida*/
 typedef struct {
     float x;
     float z;
@@ -33,9 +40,13 @@ typedef struct {
 
 /*dimenzije prozora*/
 int widthP, heightP;
-float rotateP1, xP1, zP1, xP2, zP2, rotateP2;
 
+/*stepen rotacije, x koordinata, z koordinata za igraca 1, zatim za igraca 2*/
+float rotateP1, xP1, zP1, rotateP2, xP2, zP2;
+
+/*niz za  koordinate zida igraca 1, zatim igraca 2*/
 Zid zidP1[MAX_LEN], zidP2[MAX_LEN];
+/*poslednja dodata tacka u niz za zid za igraca 1, zatim igraca 2*/
 int tackaP1, tackaP2;
 
 
@@ -72,6 +83,7 @@ int main(int argc, char **argv)
 
 
 static void on_keyboard(unsigned char key, int x, int y) {
+    /*ispis kako ne bi kompajler prijavljivao warning-e kako nisu koriscene promenljive*/
     printf("%d %d\n", x, y);
     /*klikom na esc dugme, izlazi se iz programa*/
     switch (key) {
@@ -80,7 +92,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
             exit(0);
         case 'a':
         case 'A':
-            /*p2 skreni levo*/
+            /*p2 skreni levo, ubaci koordinate tacke skretanja u niz za zid*/
             if(animation_active){
                 rotateP2 -= 90;
                 rotateP2 = (int)rotateP2 % 360;
@@ -92,7 +104,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
             break;
         case 'd':
         case 'D':
-            /*p2 skreni desno*/
+            /*p2 skreni desno, ubaci koordinate tacke skretanja u niz za zid*/
             if(animation_active){
                 rotateP2 += 90;
                 rotateP2 = (int)rotateP2 % 360;
@@ -102,12 +114,14 @@ static void on_keyboard(unsigned char key, int x, int y) {
                 glutPostRedisplay();
                 }
             break;
+            /*restuj stanje igrice na pocetno*/
         case 'r':
         case 'R':
             initialize();
             glutPostRedisplay();
             break;
         case 32:
+            /*space -> pauza/start*/
             animation_active = (animation_active+1)%2;
             if(animation_active)
                 glutTimerFunc(TIMER_INTERVAL, on_timer, TIMER_ID);
@@ -117,6 +131,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
 }
 
 static void on_keyboardSpecial(int key, int x, int y) {
+    /*ispis kako kompajler ne bi prijavljivao warning-e*/
     printf("%d %d\n", x, y);
     switch (key) {
         case 27:
@@ -124,7 +139,7 @@ static void on_keyboardSpecial(int key, int x, int y) {
             exit(0);
 
         case GLUT_KEY_LEFT:
-            /*p1 skreni levo*/
+            /*p1 skreni levo, dodaj tacku skretanja u niz za zid*/
             if (animation_active){
                 rotateP1 += 90;
                 rotateP1 = (int)rotateP1 % 360;
@@ -136,7 +151,7 @@ static void on_keyboardSpecial(int key, int x, int y) {
             break;
 
         case GLUT_KEY_RIGHT:
-            /*p1 skreni desno*/
+            /*p1 skreni desno, dodaj tacku skretanja u niz za zid*/
             if (animation_active){
                 rotateP1 -= 90;
                 rotateP1 = (int)rotateP1 % 360;
@@ -157,6 +172,8 @@ static void on_timer(int value) {
         return;
 
     if(animation_active){
+
+        /*nove koordinate igraca, u odnosu na to da li je skrenuo ili ne*/
 
         xP1 += sin(M_PI/2 * rotateP1/90);
         zP1 += cos(M_PI/2 * rotateP1/90);
@@ -188,6 +205,8 @@ void initialize() {
     /* Objekat koji predstavlja teskturu ucitanu iz fajla. */
     Image * image;
 
+    /*postavljaju se inicijalne vrednosti na promenljive, animacija nije aktivna i pocetne pozicije igraca koji nisu rotirani*/
+
     animation_active = 0;
     rotateP1 = 0;
     xP1 = 0;
@@ -196,12 +215,15 @@ void initialize() {
     zP2 = 45;
     rotateP2 = 0;
 
+    /*pocetne tacke se dodaju u niz za zid, da bi znali odakle pocinje iscrtavanje zida*/
+
     zidP1[tackaP1].x = xP1;
     zidP1[tackaP1].z = zP1-1;
 
     zidP2[tackaP2].x = xP2;
     zidP2[tackaP2].z = zP2+1;
 
+    /*pomeramo se za jedno mesto u zidu*/
     tackaP1++;
     tackaP2++;
 
@@ -267,6 +289,7 @@ static void on_display(void) {
     /*prozor postavljamo da bude preko celog ekrana*/
     glutFullScreen();
 
+    /*cistimo bafere koje koristimo*/
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
 
@@ -415,9 +438,11 @@ void display(){
 }
 
 void drawWall(int p){
+    /*iscrtavamo zidove (tragove) igraca, za to ukljucujemo BLENG i ALPHA */
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+    /*igrac 1*/
     if(p==1){
         glColor4f(0.93, 0.16, 0.22, 0.7);
         int i = 0;
@@ -425,6 +450,7 @@ void drawWall(int p){
                 while(i < tackaP1){
                     glVertex3f(zidP1[i].x, 0, zidP1[i].z);
                     glVertex3f(zidP1[i].x, 0.7, zidP1[i].z);
+                    /*ako smo dosli do poslednje dodate tacke u niz, nju spajamo sa trenutnom pozicijom igraca*/
                     i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
 
 
@@ -432,13 +458,12 @@ void drawWall(int p){
                     i == tackaP1 -1 ? glVertex3f(xP1, 0.7, zP1): glVertex3f(zidP1[i+1].x, 0.7, zidP1[i+1].z);
                     glVertex3f(zidP1[i].x, 0.7, zidP1[i].z);
 
-
                     i++;
                     }
         glEnd();
-
-
     }
+
+    /*igrac 2*/
     if(p==2){
         glColor4f(0.65,0.96,0.20, 0.7);
 
@@ -447,6 +472,7 @@ void drawWall(int p){
         while(i < tackaP2){
             glVertex3f(zidP2[i].x, 0, zidP2[i].z);
             glVertex3f(zidP2[i].x, 0.7, zidP2[i].z);
+            /*ako smo dosli do poslednje tacke dodate u niz, nju spajamo sa trenutnom pozicijom igraca*/
             i == tackaP2 -1 ? glVertex3f(xP2, 0, zP2): glVertex3f(zidP2[i+1].x, 0, zidP2[i+1].z);
 
             i == tackaP2 -1 ? glVertex3f(xP2, 0, zP2): glVertex3f(zidP2[i+1].x, 0, zidP2[i+1].z);
@@ -456,8 +482,5 @@ void drawWall(int p){
             i++;
         }
         glEnd();
-
-
     }
-
 }
