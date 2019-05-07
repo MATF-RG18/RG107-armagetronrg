@@ -6,15 +6,3 @@
 
 #IncludeRegexTransform: 
 
-/home/staki/Desktop/RG107-armagetronrg/image.c
-assert.h
--
-stdlib.h
--
-stdio.h
--
-image.h
-/home/staki/Desktop/RG107-armagetronrg/image.h
-
-/home/staki/Desktop/RG107-armagetronrg/image.h
-

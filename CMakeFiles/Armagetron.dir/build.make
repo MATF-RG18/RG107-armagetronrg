@@ -90,7 +90,6 @@ Armagetron_EXTERNAL_OBJECTS =
 
 Armagetron: CMakeFiles/Armagetron.dir/main.c.o
 Armagetron: CMakeFiles/Armagetron.dir/build.make
-Armagetron: libImage.a
 Armagetron: CMakeFiles/Armagetron.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/staki/Desktop/RG107-armagetronrg/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable Armagetron"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Armagetron.dir/link.txt --verbose=$(VERBOSE)

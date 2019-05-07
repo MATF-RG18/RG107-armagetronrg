@@ -1,1 +1,1 @@
-/usr/bin/cc  -g -Wall -I/usr/X11R6/include -I/usr/pkg/include -g  -rdynamic CMakeFiles/Armagetron.dir/main.c.o  -o Armagetron -lSOIL -lglut -lGLU -lGL -lm libImage.a 
+/usr/bin/cc  -g -Wall -I/usr/X11R6/include -I/usr/pkg/include -g  -rdynamic CMakeFiles/Armagetron.dir/main.c.o  -o Armagetron -lSOIL -lglut -lGLU -lGL -lm 

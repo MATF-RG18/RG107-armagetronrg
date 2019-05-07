@@ -42,7 +42,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/Image.dir/DependInfo.cmake"
-  "CMakeFiles/Soil.dir/DependInfo.cmake"
   "CMakeFiles/Armagetron.dir/DependInfo.cmake"
+  "CMakeFiles/Soil.dir/DependInfo.cmake"
   )
