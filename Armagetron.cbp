@@ -27,44 +27,6 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="Armagetron">
-				<Option output="/home/staki/Desktop/RG107-armagetronrg/Armagetron" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Armagetron"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="Armagetron/fast">
-				<Option output="/home/staki/Desktop/RG107-armagetronrg/Armagetron" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Armagetron/fast"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
 			<Target title="Image">
 				<Option output="/home/staki/Desktop/RG107-armagetronrg/libImage.a" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
@@ -93,7 +55,76 @@
 					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Soil">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/libSoil.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Soil"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Soil/fast">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/libSoil.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Soil/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Armagetron">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/Armagetron" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Armagetron"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Armagetron/fast">
+				<Option output="/home/staki/Desktop/RG107-armagetronrg/Armagetron" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/staki/Desktop/RG107-armagetronrg"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 Armagetron/fast"/>
+					<CompileFile command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -f &quot;/home/staki/Desktop/RG107-armagetronrg/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
+		<Unit filename="/home/staki/Desktop/RG107-armagetronrg/SOIL.h">
+			<Option target="Soil"/>
+		</Unit>
 		<Unit filename="/home/staki/Desktop/RG107-armagetronrg/image.c">
 			<Option target="Image"/>
 		</Unit>

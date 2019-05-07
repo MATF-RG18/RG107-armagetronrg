@@ -194,6 +194,12 @@ Image_LIB_DEPENDS:STATIC=
 Libs_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
+Soil_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+image.c_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 image.o_LIB_DEPENDS:STATIC=
 
 //Dependencies for target

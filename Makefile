@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/home/staki/Downloads/clion-2018.1.6/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Armagetron
-
-# Build rule for target.
-Armagetron: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Armagetron
-.PHONY : Armagetron
-
-# fast build rule for target.
-Armagetron/fast:
-	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/build
-.PHONY : Armagetron/fast
-
-#=============================================================================
 # Target rules for targets named Image
 
 # Build rule for target.
@@ -135,6 +122,32 @@ Image: cmake_check_build_system
 Image/fast:
 	$(MAKE) -f CMakeFiles/Image.dir/build.make CMakeFiles/Image.dir/build
 .PHONY : Image/fast
+
+#=============================================================================
+# Target rules for targets named Soil
+
+# Build rule for target.
+Soil: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Soil
+.PHONY : Soil
+
+# fast build rule for target.
+Soil/fast:
+	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/build
+.PHONY : Soil/fast
+
+#=============================================================================
+# Target rules for targets named Armagetron
+
+# Build rule for target.
+Armagetron: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 Armagetron
+.PHONY : Armagetron
+
+# fast build rule for target.
+Armagetron/fast:
+	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/build
+.PHONY : Armagetron/fast
 
 image.o: image.c.o
 
@@ -197,9 +210,10 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... Armagetron"
-	@echo "... edit_cache"
 	@echo "... Image"
+	@echo "... edit_cache"
+	@echo "... Soil"
+	@echo "... Armagetron"
 	@echo "... image.o"
 	@echo "... image.i"
 	@echo "... image.s"

@@ -2,11 +2,8 @@
 #include <math.h>
 #include <GL/glut.h>
 #include <stdio.h>
-#include "image.h"
+#include "SOIL.h"
 
-
-#define FILENAME0 "./Images/zid.bmp"
-#define FILENAME1 "./Images/pod.bmp"
 /*postavljamo interval tajmera na 80*/
 #define TIMER_INTERVAL 80
 /*tajmer id nam je 0*/
@@ -31,6 +28,7 @@ void initialize();
 void display();
 void drawWall(int);
 
+GLuint zid, pod;
 
 /*struktura za x i z koordinate zida*/
 typedef struct {
@@ -202,11 +200,7 @@ static void on_reshape(int width, int height) {
 }
 
 void initialize() {
-    /* Objekat koji predstavlja teskturu ucitanu iz fajla. */
-    Image * image;
-
     /*postavljaju se inicijalne vrednosti na promenljive, animacija nije aktivna i pocetne pozicije igraca koji nisu rotirani*/
-
     animation_active = 0;
     rotateP1 = 0;
     xP1 = 0;
@@ -216,6 +210,9 @@ void initialize() {
     rotateP2 = 0;
 
     /*pocetne tacke se dodaju u niz za zid, da bi znali odakle pocinje iscrtavanje zida*/
+
+    tackaP1 = 0;
+    tackaP2 = 0;
 
     zidP1[tackaP1].x = xP1;
     zidP1[tackaP1].z = zP1-1;
@@ -227,28 +224,23 @@ void initialize() {
     tackaP1++;
     tackaP2++;
 
-
     /* Ukljucuju se teksture. */
     glEnable(GL_TEXTURE_2D);
 
-    glTexEnvf(GL_TEXTURE_ENV,
-              GL_TEXTURE_ENV_MODE,
-              GL_REPLACE);
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-    /*
-     * Inicijalizuje se objekat koji ce sadrzati teksture ucitane iz
-     * fajla.
-     */
-    image = image_init(0, 0);
+    zid = SOIL_load_OGL_texture("./Images/rim_wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
-    /* Kreira se prva tekstura. */
-    image_read(image, FILENAME0);
+    if(zid == 0){
+        printf("Zid nije ucitan\n %s \n", SOIL_last_result());
+        exit(EXIT_FAILURE);
+    }
 
     /* Generisu se identifikatori tekstura. */
     glGenTextures(2, names);
 
     /*prva tekstura, za zid*/
-    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBindTexture(GL_TEXTURE_2D, zid);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
     glTexParameteri(GL_TEXTURE_2D,
@@ -257,29 +249,24 @@ void initialize() {
                     GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
-                 image->width, image->height, 0,
-                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
 
-    /* druga tekstura, za pod*/
-    image_read(image, FILENAME1);
+    pod = SOIL_load_OGL_texture("./Images/floor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
 
-    glBindTexture(GL_TEXTURE_2D, names[1]);
+    if(pod == 0){
+        printf("Pod nije ucitan\n");
+        exit(EXIT_FAILURE);
+    }
+
+    glBindTexture(GL_TEXTURE_2D, pod);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D,
                     GL_TEXTURE_WRAP_T, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB,
-                 image->width, image->height, 0,
-                 GL_RGB, GL_UNSIGNED_BYTE, image->pixels);
 
     /* Iskljucujemo aktivnu teksturu */
     glBindTexture(GL_TEXTURE_2D, 0);
-
-    /* Unistava se objekat za citanje tekstura iz fajla. */
-    image_done(image);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -313,16 +300,16 @@ void display(){
 
     /*iscrtavamo zid po zid, koristeci teksuru za zid*/
     glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBindTexture(GL_TEXTURE_2D, zid);
 
     glBegin(GL_QUADS);
         glNormal3f(0, 0, 1);
 
         glTexCoord2f(0, 0);
-        glVertex3f(50, -10, -50);
+        glVertex3f(50, 0, -50);
 
         glTexCoord2f(1, 0);
-        glVertex3f(50, -10, 50);
+        glVertex3f(50, 0, 50);
 
         glTexCoord2f(1, 1);
         glVertex3f(50, 100, 50);
@@ -331,15 +318,15 @@ void display(){
         glVertex3f(50, 100, -50);
     glEnd();
 
-    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBindTexture(GL_TEXTURE_2D, zid);
     glBegin(GL_QUADS);
         glNormal3f(0, 0, 1);
 
         glTexCoord2f(0, 0);
-        glVertex3f(50, -10, 50);
+        glVertex3f(50, 0, 50);
 
         glTexCoord2f(1, 0);
-        glVertex3f(-50, -10, 50);
+        glVertex3f(-50, 0, 50);
 
         glTexCoord2f(1, 1);
         glVertex3f(-50, 100, 50);
@@ -348,15 +335,15 @@ void display(){
         glVertex3f(50, 100, 50);
     glEnd();
 
-    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBindTexture(GL_TEXTURE_2D, zid);
     glBegin(GL_QUADS);
         glNormal3f(0, 0, 1);
 
         glTexCoord2f(0, 0);
-        glVertex3f(-50, -10, 50);
+        glVertex3f(-50, 0, 50);
 
         glTexCoord2f(1, 0);
-        glVertex3f(-50, -10, -50);
+        glVertex3f(-50, 0, -50);
 
         glTexCoord2f(1, 1);
         glVertex3f(-50, 100, -50);
@@ -365,15 +352,15 @@ void display(){
         glVertex3f(-50, 100, 50);
     glEnd();
 
-    glBindTexture(GL_TEXTURE_2D, names[0]);
+    glBindTexture(GL_TEXTURE_2D, zid);
     glBegin(GL_QUADS);
         glNormal3f(0, 0, 1);
 
         glTexCoord2f(0, 0);
-        glVertex3f(-50, -10, -50);
+        glVertex3f(-50, 0, -50);
 
         glTexCoord2f(1, 0);
-        glVertex3f(50, -10, -50);
+        glVertex3f(50, 0, -50);
 
         glTexCoord2f(1, 1);
         glVertex3f(50, 100, -50);
@@ -384,7 +371,7 @@ void display(){
 
 
     /*iscrtavamo pod, koristeci teksturu za pod*/
-    glBindTexture(GL_TEXTURE_2D, names[1]);
+    glBindTexture(GL_TEXTURE_2D, pod);
     glBegin(GL_QUADS);
         glNormal3f(0, 1, 0);
 

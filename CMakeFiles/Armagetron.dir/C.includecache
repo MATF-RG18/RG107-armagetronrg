@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/staki/Desktop/RG107-armagetronrg/image.h
+/home/staki/Desktop/RG107-armagetronrg/SOIL.h
 
 /home/staki/Desktop/RG107-armagetronrg/main.c
 stdlib.h
@@ -17,6 +17,6 @@ GL/glut.h
 -
 stdio.h
 -
-image.h
-/home/staki/Desktop/RG107-armagetronrg/image.h
+SOIL.h
+/home/staki/Desktop/RG107-armagetronrg/SOIL.h
 

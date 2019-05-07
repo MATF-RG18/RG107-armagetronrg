@@ -60,43 +60,6 @@ CMAKE_SOURCE_DIR = /home/staki/Desktop/RG107-armagetronrg
 CMAKE_BINARY_DIR = /home/staki/Desktop/RG107-armagetronrg
 
 #=============================================================================
-# Target rules for target CMakeFiles/Armagetron.dir
-
-# All Build rule for target.
-CMakeFiles/Armagetron.dir/all: CMakeFiles/Image.dir/all
-	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/depend
-	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/staki/Desktop/RG107-armagetronrg/CMakeFiles --progress-num=1,2 "Built target Armagetron"
-.PHONY : CMakeFiles/Armagetron.dir/all
-
-# Include target in all.
-all: CMakeFiles/Armagetron.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Armagetron.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Armagetron.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 0
-.PHONY : CMakeFiles/Armagetron.dir/rule
-
-# Convenience name for target.
-Armagetron: CMakeFiles/Armagetron.dir/rule
-
-.PHONY : Armagetron
-
-# clean rule for target.
-CMakeFiles/Armagetron.dir/clean:
-	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/clean
-.PHONY : CMakeFiles/Armagetron.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/Armagetron.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Target rules for target CMakeFiles/Image.dir
 
 # All Build rule for target.
@@ -130,6 +93,80 @@ CMakeFiles/Image.dir/clean:
 
 # clean rule for target.
 clean: CMakeFiles/Image.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Soil.dir
+
+# All Build rule for target.
+CMakeFiles/Soil.dir/all:
+	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/depend
+	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/staki/Desktop/RG107-armagetronrg/CMakeFiles --progress-num= "Built target Soil"
+.PHONY : CMakeFiles/Soil.dir/all
+
+# Include target in all.
+all: CMakeFiles/Soil.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Soil.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Soil.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 0
+.PHONY : CMakeFiles/Soil.dir/rule
+
+# Convenience name for target.
+Soil: CMakeFiles/Soil.dir/rule
+
+.PHONY : Soil
+
+# clean rule for target.
+CMakeFiles/Soil.dir/clean:
+	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/clean
+.PHONY : CMakeFiles/Soil.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Soil.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/Armagetron.dir
+
+# All Build rule for target.
+CMakeFiles/Armagetron.dir/all: CMakeFiles/Image.dir/all
+	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/depend
+	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/staki/Desktop/RG107-armagetronrg/CMakeFiles --progress-num=1,2 "Built target Armagetron"
+.PHONY : CMakeFiles/Armagetron.dir/all
+
+# Include target in all.
+all: CMakeFiles/Armagetron.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/Armagetron.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Armagetron.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 0
+.PHONY : CMakeFiles/Armagetron.dir/rule
+
+# Convenience name for target.
+Armagetron: CMakeFiles/Armagetron.dir/rule
+
+.PHONY : Armagetron
+
+# clean rule for target.
+CMakeFiles/Armagetron.dir/clean:
+	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/clean
+.PHONY : CMakeFiles/Armagetron.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/Armagetron.dir/clean
 
 .PHONY : clean
 
