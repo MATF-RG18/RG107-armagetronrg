@@ -41,15 +41,19 @@ Alternativni način je pokretanje programa kroz neko od razvojnih okruženja (CL
 ### P1
 
 <kbd> :arrow_left: </kbd> Skretanje levo
+<br>
 <kbd> :arrow_right: </kbd> Skretanje desno
 
 ### P2
 
 <kbd> A </kbd> Skretanje levo
+<br>
 <kbd> D </kbd> Skretanje desno
 
 ### Oba igrača
 
-<kbd> R </kbd> Restartovanje igrice
-<kbd> Space </kbd> Pauza/Start igrice
+<kbd> R </kbd> Restartovanje igrice 
+<br>
+<kbd> Space </kbd> Pauza/Start igrice 
+<br>
 <kbd> Esc </kbd> Prekid igrice
