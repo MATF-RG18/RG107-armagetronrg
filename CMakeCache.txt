@@ -17,9 +17,6 @@
 //Value Computed by CMake
 Armagetron_BINARY_DIR:STATIC=/home/staki/Desktop/RG107-armagetronrg
 
-//Dependencies for the target
-Armagetron_LIB_DEPENDS:STATIC=general;-lSOIL -lglut -lGLU -lGL -lm;general;m;
-
 //Value Computed by CMake
 Armagetron_SOURCE_DIR:STATIC=/home/staki/Desktop/RG107-armagetronrg
 
@@ -161,10 +158,10 @@ CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
 //If set, runtime paths are not added when installing shared libraries,
 // but are added when building.
-CMAKE_SKIP_INSTALL_RPATH:BOOL=OFF
+CMAKE_SKIP_INSTALL_RPATH:BOOL=NO
 
 //If set, runtime paths are not added when using shared libraries.
-CMAKE_SKIP_RPATH:BOOL=OFF
+CMAKE_SKIP_RPATH:BOOL=NO
 
 //Flags used by the linker during the creation of static libraries.
 CMAKE_STATIC_LINKER_FLAGS:STRING=
@@ -188,37 +185,22 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 // .SILENT directive, and all commands will be echoed to the console
 // during the make.  This is useful for debugging only. With Visual
 // Studio IDE projects all commands are done without /nologo.
-CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
+CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
+
+//Dependencies for the target
+FUNC_LIB_DEPENDS:STATIC=general;-lSOIL -lglut -lGLU -lGL -lm;
 
 //Dependencies for target
 F_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-FunctionsLib_LIB_DEPENDS:STATIC=
+LibModules_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
-Functions_LIB_DEPENDS:STATIC=
+SOIL_LIB_DEPENDS:STATIC=
 
-//Dependencies for target
-Image_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-Libs_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-Soil_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-functions_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-image.c_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-image.o_LIB_DEPENDS:STATIC=
-
-//Dependencies for target
-image_LIB_DEPENDS:STATIC=
+//Dependencies for the target
+Soil_LIB_DEPENDS:STATIC=general;-lSOIL -lglut -lGLU -lGL -lm;
 
 
 ########################

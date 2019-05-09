@@ -97,43 +97,6 @@ clean: CMakeFiles/Armagetron.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Soil.dir
-
-# All Build rule for target.
-CMakeFiles/Soil.dir/all:
-	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/depend
-	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/staki/Desktop/RG107-armagetronrg/CMakeFiles --progress-num= "Built target Soil"
-.PHONY : CMakeFiles/Soil.dir/all
-
-# Include target in all.
-all: CMakeFiles/Soil.dir/all
-
-.PHONY : all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/Soil.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Soil.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/staki/Desktop/RG107-armagetronrg/CMakeFiles 0
-.PHONY : CMakeFiles/Soil.dir/rule
-
-# Convenience name for target.
-Soil: CMakeFiles/Soil.dir/rule
-
-.PHONY : Soil
-
-# clean rule for target.
-CMakeFiles/Soil.dir/clean:
-	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/clean
-.PHONY : CMakeFiles/Soil.dir/clean
-
-# clean rule for target.
-clean: CMakeFiles/Soil.dir/clean
-
-.PHONY : clean
-
-#=============================================================================
 # Special targets to cleanup operation of make.
 
 # Special rule to run CMake to check the build system integrity.

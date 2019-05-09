@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/staki/Desktop/RG107-armagetronrg
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/staki/Downloads/clion-2018.1.6/bin/cmake/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -77,6 +66,17 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -123,19 +123,6 @@ Armagetron/fast:
 	$(MAKE) -f CMakeFiles/Armagetron.dir/build.make CMakeFiles/Armagetron.dir/build
 .PHONY : Armagetron/fast
 
-#=============================================================================
-# Target rules for targets named Soil
-
-# Build rule for target.
-Soil: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 Soil
-.PHONY : Soil
-
-# fast build rule for target.
-Soil/fast:
-	$(MAKE) -f CMakeFiles/Soil.dir/build.make CMakeFiles/Soil.dir/build
-.PHONY : Soil/fast
-
 main.o: main.c.o
 
 .PHONY : main.o
@@ -169,10 +156,9 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
+	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Armagetron"
-	@echo "... rebuild_cache"
-	@echo "... Soil"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
