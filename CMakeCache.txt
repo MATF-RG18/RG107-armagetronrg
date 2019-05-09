@@ -17,6 +17,9 @@
 //Value Computed by CMake
 Armagetron_BINARY_DIR:STATIC=/home/staki/Desktop/RG107-armagetronrg
 
+//Dependencies for the target
+Armagetron_LIB_DEPENDS:STATIC=general;-lSOIL -lglut -lGLU -lGL -lm;general;m;
+
 //Value Computed by CMake
 Armagetron_SOURCE_DIR:STATIC=/home/staki/Desktop/RG107-armagetronrg
 
@@ -188,6 +191,15 @@ CMAKE_STRIP:FILEPATH=/usr/bin/strip
 CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
 //Dependencies for target
+F_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+FunctionsLib_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+Functions_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
 Image_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
@@ -195,6 +207,9 @@ Libs_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 Soil_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+functions_LIB_DEPENDS:STATIC=
 
 //Dependencies for target
 image.c_LIB_DEPENDS:STATIC=

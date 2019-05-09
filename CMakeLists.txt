@@ -7,5 +7,5 @@ set(LDLIBS "-lSOIL -lglut -lGLU -lGL -lm")
 
 add_library(Soil SOIL)
 add_executable(Armagetron main)
-
 target_link_libraries(Armagetron ${LDLIBS})
+

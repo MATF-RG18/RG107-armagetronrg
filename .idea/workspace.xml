@@ -4,7 +4,6 @@
     <generated>
       <config projectName="Armagetron" targetName="Armagetron" />
       <config projectName="Armagetron" targetName="Soil" />
-      <config projectName="Armagetron" targetName="Image" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -13,7 +12,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c688bdf-ba19-4d7e-b0e6-941db3a0e269" name="Default" comment="" />
+    <list default="true" id="3c688bdf-ba19-4d7e-b0e6-941db3a0e269" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Armagetron" beforeDir="false" afterPath="$PROJECT_DIR$/Armagetron" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/Armagetron.dir/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Armagetron.dir/main.c.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/tocak.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/trag.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Images/trup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <ignored path="$PROJECT_DIR$/CMakeFiles/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,42 +35,25 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="279" column="12" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
+            <state relative-caret-position="115">
+              <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
-                <element signature="e#3645#4713#0" />
-                <element signature="e#4715#5306#0" />
-                <element signature="e#5308#5599#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SOIL.h" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SOIL.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SOIL.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="265" column="4" selection-start-line="265" selection-start-column="4" selection-end-line="265" selection-end-column="4" />
+            <state relative-caret-position="6118">
+              <caret line="266" column="32" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Armagetron.cbp" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Armagetron.cbp">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
@@ -70,6 +62,15 @@
             <state split_layout="SPLIT">
               <first_editor />
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CMakeLists.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="184">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
             </state>
           </provider>
         </entry>
@@ -83,8 +84,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/functions.c" />
+        <option value="$PROJECT_DIR$/functions.h" />
         <option value="$PROJECT_DIR$/main.c" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
@@ -109,6 +112,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -120,7 +124,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -170,7 +173,11 @@
       <workItem from="1556911328413" duration="11472000" />
       <workItem from="1557085393007" duration="5057000" />
       <workItem from="1557170260276" duration="3939000" />
-      <workItem from="1557252271201" duration="4339000" />
+      <workItem from="1557252271201" duration="4612000" />
+      <workItem from="1557264849407" duration="5310000" />
+      <workItem from="1557332845528" duration="2520000" />
+      <workItem from="1557345516774" duration="3562000" />
+      <workItem from="1557432761718" duration="458000" />
     </task>
     <task id="LOCAL-00001" summary="Readme">
       <created>1556403274945</created>
@@ -221,27 +228,41 @@
       <option name="project" value="LOCAL" />
       <updated>1557256352086</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Prelazak sa jedne biblioteke za ucitavanje tekstura na drugu">
+      <created>1557256792572</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1557256792572</updated>
+    </task>
+    <task id="LOCAL-00009" summary="...">
+      <created>1557256878902</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1557256878902</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="57124000" />
+    <option name="totallyTimeSpent" value="69247000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="21" width="1368" height="748" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1669107" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.112737924" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" visible="true" weight="0.32484075" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.32961783" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.272293" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32484075" />
+      <window_info anchor="bottom" id="CMake" order="11" weight="0.3280255" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.272293" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -264,18 +285,41 @@
     <MESSAGE value="Dodati komentari na dosadasnji rad" />
     <MESSAGE value="Prelazak sa jedne biblioteke za ucitavanje teksura na drugu" />
     <MESSAGE value="Prelazak sa jedne biblioteke za ucitavanje tekstura na drugu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prelazak sa jedne biblioteke za ucitavanje tekstura na drugu" />
+    <MESSAGE value="..." />
+    <option name="LAST_COMMIT_MESSAGE" value="..." />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/SOIL.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6118">
+          <caret line="266" column="32" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Armagetron.cbp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10212">
           <caret line="444" column="13" selection-start-line="444" selection-start-column="13" selection-end-line="444" selection-end-column="13" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -298,24 +342,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9913">
           <caret line="431" column="48" selection-start-line="431" selection-start-column="48" selection-end-line="431" selection-end-column="48" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -338,24 +371,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="8556">
           <caret line="372" lean-forward="true" selection-start-line="372" selection-end-line="372" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -378,24 +400,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5635">
           <caret line="245" column="32" selection-start-line="245" selection-start-column="32" selection-end-line="245" selection-end-column="32" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -418,24 +429,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3197">
           <caret line="139" column="9" lean-forward="true" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -458,24 +458,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -490,15 +479,7 @@
     <entry file="file://$PROJECT_DIR$/Armagetron.cbp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -512,9 +493,6 @@
         <state>
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
         </state>
       </provider>
@@ -527,16 +505,6 @@
         <state relative-caret-position="-6072" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake_install.cmake">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="2" column="18" lean-forward="true" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Makefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/cmake-build-debug/Makefile" />
     <entry file="file://$PROJECT_DIR$/CMakeFiles/feature_tests.c">
       <provider selected="true" editor-type-id="text-editor">
@@ -545,18 +513,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/image.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Armagetron.cbp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/image.c" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="69">
@@ -570,30 +527,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SOIL.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6118">
+          <caret line="266" column="32" selection-start-line="266" selection-start-column="32" selection-end-line="266" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeFiles/Makefile2">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="140" selection-start-line="140" selection-end-line="140" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Armagetron.cbp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/functions.c" />
+    <entry file="file://$PROJECT_DIR$/functions.h" />
+    <entry file="file://$PROJECT_DIR$/CMakeFiles/Armagetron.dir/build.make">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake_install.cmake">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="184">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="279" column="12" selection-start-line="279" selection-start-column="12" selection-end-line="279" selection-end-column="12" />
+        <state relative-caret-position="115">
+          <caret line="9" column="18" lean-forward="true" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-            <element signature="e#3645#4713#0" />
-            <element signature="e#4715#5306#0" />
-            <element signature="e#5308#5599#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SOIL.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="265" column="4" selection-start-line="265" selection-start-column="4" selection-end-line="265" selection-end-column="4" />
         </state>
       </provider>
     </entry>

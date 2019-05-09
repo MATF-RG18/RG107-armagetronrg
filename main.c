@@ -5,14 +5,12 @@
 #include "SOIL.h"
 
 /*postavljamo interval tajmera na 80*/
-#define TIMER_INTERVAL 80
+#define TIMER_INTERVAL 60
 /*tajmer id nam je 0*/
 #define TIMER_ID 0
 /*duzina niza tacaka za iscrtavanje zida*/
-#define MAX_LEN 50000
+#define MAX_LEN 5000
 
-/*niz imena tekstura*/
-static GLuint names[2];
 
 /* Fleg koji odredjuje stanje tajmera. */
 static int animation_active;
@@ -27,8 +25,13 @@ void initialize();
 /*deklaracija funkcija koje ce pozivati neke od kolbek f-ja*/
 void display();
 void drawWall(int);
+void displayPlayer(int);
+void loadTextures();
 
-GLuint zid, pod;
+/*imena tekstura*/
+GLuint zid, pod, player1, player2;
+
+unsigned int koefKretanjaP1, koefKretanjaP2;
 
 /*struktura za x i z koordinate zida*/
 typedef struct {
@@ -44,12 +47,13 @@ float rotateP1, xP1, zP1, rotateP2, xP2, zP2;
 
 /*niz za  koordinate zida igraca 1, zatim igraca 2*/
 Zid zidP1[MAX_LEN], zidP2[MAX_LEN];
+
 /*poslednja dodata tacka u niz za zid za igraca 1, zatim igraca 2*/
 int tackaP1, tackaP2;
 
 
-int main(int argc, char **argv)
-{/* Inicijalizuje se GLUT. */
+int main(int argc, char **argv) {
+    /* Inicijalizuje se GLUT. */
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH | GLUT_DOUBLE);
 
@@ -97,8 +101,9 @@ static void on_keyboard(unsigned char key, int x, int y) {
                 zidP2[tackaP2].x = xP2;
                 zidP2[tackaP2].z = zP2;
                 tackaP2++;
+                koefKretanjaP2 = (koefKretanjaP2 - 1)%4;
                 glutPostRedisplay();
-                }
+            }
             break;
         case 'd':
         case 'D':
@@ -109,8 +114,9 @@ static void on_keyboard(unsigned char key, int x, int y) {
                 zidP2[tackaP2].x = xP2;
                 zidP2[tackaP2].z = zP2;
                 tackaP2++;
+                koefKretanjaP2 = (koefKretanjaP2 + 1)%4;
                 glutPostRedisplay();
-                }
+            }
             break;
             /*restuj stanje igrice na pocetno*/
         case 'r':
@@ -144,8 +150,9 @@ static void on_keyboardSpecial(int key, int x, int y) {
                 zidP1[tackaP1].x = xP1;
                 zidP1[tackaP1].z = zP1;
                 tackaP1++;
+                koefKretanjaP1 = (koefKretanjaP1 -1)%4;
                 glutPostRedisplay();
-                }
+            }
             break;
 
         case GLUT_KEY_RIGHT:
@@ -156,8 +163,9 @@ static void on_keyboardSpecial(int key, int x, int y) {
                 zidP1[tackaP1].x = xP1;
                 zidP1[tackaP1].z = zP1;
                 tackaP1++;
+                koefKretanjaP1 = (koefKretanjaP1 +1)%4;
                 glutPostRedisplay();
-                }
+            }
             break;
         default:
             break;
@@ -192,7 +200,7 @@ static void on_reshape(int width, int height) {
     /*cuvaju se dimenzije prozora*/
     widthP = width;
     heightP = height;
-    
+
     /* Postavljaju se parametri projekcije. */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -209,6 +217,9 @@ void initialize() {
     zP2 = 45;
     rotateP2 = 0;
 
+    koefKretanjaP1 = 0;
+    koefKretanjaP2 = 0;
+
     /*pocetne tacke se dodaju u niz za zid, da bi znali odakle pocinje iscrtavanje zida*/
 
     tackaP1 = 0;
@@ -224,49 +235,7 @@ void initialize() {
     tackaP1++;
     tackaP2++;
 
-    /* Ukljucuju se teksture. */
-    glEnable(GL_TEXTURE_2D);
-
-    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
-
-    zid = SOIL_load_OGL_texture("./Images/rim_wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-
-    if(zid == 0){
-        printf("Zid nije ucitan\n %s \n", SOIL_last_result());
-        exit(EXIT_FAILURE);
-    }
-
-    /* Generisu se identifikatori tekstura. */
-    glGenTextures(2, names);
-
-    /*prva tekstura, za zid*/
-    glBindTexture(GL_TEXTURE_2D, zid);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-
-    pod = SOIL_load_OGL_texture("./Images/floor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-
-    if(pod == 0){
-        printf("Pod nije ucitan\n");
-        exit(EXIT_FAILURE);
-    }
-
-    glBindTexture(GL_TEXTURE_2D, pod);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-    /* Iskljucujemo aktivnu teksturu */
-    glBindTexture(GL_TEXTURE_2D, 0);
+    loadTextures();
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
@@ -283,109 +252,135 @@ static void on_display(void) {
     /*postavljamo pogled za igraca 2, gornji levi ugao ekrana i iscrtavamo objekte*/
     glViewport(0, heightP/2, widthP/2, heightP/2);
     glLoadIdentity();
-    gluLookAt(0, 3, 50, 0, 0, 0, 0, 1, 0);
+    if(koefKretanjaP2 == 0)
+        gluLookAt(xP2-1, 3, zP2+3, xP2, 0, zP2-10, 0, 1, 0);
+    else if(koefKretanjaP2 == 1)
+        gluLookAt(xP2-3, 3, zP2-1, xP2+10, 0, zP2, 0, 1, 0);
+    else if(koefKretanjaP2 == 2)
+        gluLookAt(xP2-1, 3, zP2-3, xP2, 0, zP2+10, 0, 1, 0);
+    else if(koefKretanjaP2 == 3)
+        gluLookAt(xP2+3, 3, zP2+1, xP2-10, 0, zP2, 0, 1, 0);
     display();
 
     /*postavljamo poged za igraca 1, donji desni ugao ekrana i iscrtavamo objekte*/
     glViewport(widthP/2, 0, widthP/2, heightP/2);
     glLoadIdentity();
-    gluLookAt(-2, 3, -50, 0, 0, 0, 0, 1, 0);
+    if(koefKretanjaP1 == 0)
+        gluLookAt(xP1-1, 3, zP1-3, xP1, 0, zP1+10, 0, 1, 0);
+    else if(koefKretanjaP1 == 1)
+        gluLookAt(xP1+3, 3, zP1-1, xP1-10, 0, zP1, 0, 1, 0);
+    else if(koefKretanjaP1 == 2)
+        gluLookAt(xP1-1, 3, zP1+3, xP1, 0, zP1-10, 0, 1, 0);
+    else if(koefKretanjaP1 == 3)
+        gluLookAt(xP1-3, 3, zP1+1, xP1+10, 0, zP1, 0, 1, 0);
     display();
-    
+
+    /*dva probna viewporta, na kojima se trenutno nalaze poruke da je neki od igraca pobedio*/
+
+    glViewport(0,0, widthP/2, heightP/2);
+    glLoadIdentity();
+    gluLookAt(0,100,0, 0,0,0, 1,0,0);
+    displayPlayer(1);
+
+    glViewport(widthP/2,heightP/2, widthP/2, heightP/2);
+    glLoadIdentity();
+    gluLookAt(0,100,0, 0,0,0, 1,0,0);
+    displayPlayer(2);
+
     /* Postavlja se nova slika u prozor. */
     glutSwapBuffers();
 }
 
-void display(){
+void display() {
 
     /*iscrtavamo zid po zid, koristeci teksuru za zid*/
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, zid);
 
     glBegin(GL_QUADS);
-        glNormal3f(0, 0, 1);
+    glNormal3f(0, 0, 1);
 
-        glTexCoord2f(0, 0);
-        glVertex3f(50, 0, -50);
+    glTexCoord2f(0, 0);
+    glVertex3f(50, 0, -50);
 
-        glTexCoord2f(1, 0);
-        glVertex3f(50, 0, 50);
+    glTexCoord2f(1, 0);
+    glVertex3f(50, 0, 50);
 
-        glTexCoord2f(1, 1);
-        glVertex3f(50, 100, 50);
+    glTexCoord2f(1, 1);
+    glVertex3f(50, 100, 50);
 
-        glTexCoord2f(0, 1);
-        glVertex3f(50, 100, -50);
+    glTexCoord2f(0, 1);
+    glVertex3f(50, 100, -50);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, zid);
     glBegin(GL_QUADS);
-        glNormal3f(0, 0, 1);
+    glNormal3f(0, 0, 1);
 
-        glTexCoord2f(0, 0);
-        glVertex3f(50, 0, 50);
+    glTexCoord2f(0, 0);
+    glVertex3f(50, 0, 50);
 
-        glTexCoord2f(1, 0);
-        glVertex3f(-50, 0, 50);
+    glTexCoord2f(1, 0);
+    glVertex3f(-50, 0, 50);
 
-        glTexCoord2f(1, 1);
-        glVertex3f(-50, 100, 50);
+    glTexCoord2f(1, 1);
+    glVertex3f(-50, 100, 50);
 
-        glTexCoord2f(0, 1);
-        glVertex3f(50, 100, 50);
+    glTexCoord2f(0, 1);
+    glVertex3f(50, 100, 50);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, zid);
     glBegin(GL_QUADS);
-        glNormal3f(0, 0, 1);
+    glNormal3f(0, 0, 1);
 
-        glTexCoord2f(0, 0);
-        glVertex3f(-50, 0, 50);
+    glTexCoord2f(0, 0);
+    glVertex3f(-50, 0, 50);
 
-        glTexCoord2f(1, 0);
-        glVertex3f(-50, 0, -50);
+    glTexCoord2f(1, 0);
+    glVertex3f(-50, 0, -50);
 
-        glTexCoord2f(1, 1);
-        glVertex3f(-50, 100, -50);
+    glTexCoord2f(1, 1);
+    glVertex3f(-50, 100, -50);
 
-        glTexCoord2f(0, 1);
-        glVertex3f(-50, 100, 50);
+    glTexCoord2f(0, 1);
+    glVertex3f(-50, 100, 50);
     glEnd();
 
     glBindTexture(GL_TEXTURE_2D, zid);
     glBegin(GL_QUADS);
-        glNormal3f(0, 0, 1);
+    glNormal3f(0, 0, 1);
 
-        glTexCoord2f(0, 0);
-        glVertex3f(-50, 0, -50);
+    glTexCoord2f(0, 0);
+    glVertex3f(-50, 0, -50);
 
-        glTexCoord2f(1, 0);
-        glVertex3f(50, 0, -50);
+    glTexCoord2f(1, 0);
+    glVertex3f(50, 0, -50);
 
-        glTexCoord2f(1, 1);
-        glVertex3f(50, 100, -50);
+    glTexCoord2f(1, 1);
+    glVertex3f(50, 100, -50);
 
-        glTexCoord2f(0, 1);
-        glVertex3f(-50, 100, -50);
+    glTexCoord2f(0, 1);
+    glVertex3f(-50, 100, -50);
     glEnd();
 
 
     /*iscrtavamo pod, koristeci teksturu za pod*/
     glBindTexture(GL_TEXTURE_2D, pod);
     glBegin(GL_QUADS);
-        glNormal3f(0, 1, 0);
+    glNormal3f(0, 1, 0);
 
-        glTexCoord2f(0, 0);
-        glVertex3f(-50, 0, 50);
+    glTexCoord2f(0, 0);
+    glVertex3f(-50, 0, 50);
 
-        glTexCoord2f(50, 0);
-        glVertex3f(50, 0, 50);
+    glTexCoord2f(50, 0);
+    glVertex3f(50, 0, 50);
 
-        glTexCoord2f(50, 50);
-        glVertex3f(50, 0, -50);
+    glTexCoord2f(50, 50);
+    glVertex3f(50, 0, -50);
 
-        glTexCoord2f(0, 50);
-        glVertex3f(-50, 0, -50);
+    glTexCoord2f(0, 50);
+    glVertex3f(-50, 0, -50);
     glEnd();
 
     glDisable(GL_TEXTURE_2D);
@@ -405,69 +400,215 @@ void display(){
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
 
+    /*iscrtavanje igraca 2*/
     glPushMatrix();
-        glColor3f(0.65,0.96,0.20);
-        glTranslatef(xP2, 0.5, zP2);
-        glRotatef(rotateP2, 0, 1, 0);
-        glScalef(0.5,0.7,2);
-        glutSolidCube(1);
+    glColor3f(0.16,0.53,0.78);
+    glTranslatef(xP2, 0.15, zP2);
+    glRotatef(rotateP2, 0, 1, 0);
+    glScalef(0.2,0.7,0.85);
+    glutSolidCube(1);
     glPopMatrix();
-    drawWall(2);
+    drawWall(2); /*iscrtavanje traga igraca 2*/
 
+    /*iscrtavanje igraca 1*/
     glPushMatrix();
-        glColor3f(0.93, 0.16, 0.22);
-        glTranslatef(xP1, 0.5, zP1);
-        glRotatef(rotateP1, 0, 1, 0);
-        glScalef(0.5,0.7,2);
-        glutSolidCube(1);
+    glColor3f(0.93, 0.16, 0.22);
+    glTranslatef(xP1, 0.15, zP1);
+    glRotatef(rotateP1, 0, 1, 0);
+    glScalef(0.2,0.7,0.85);
+    glutSolidCube(1);
     glPopMatrix();
-    drawWall(1);
+    drawWall(1); /*iscrtavanje traga igraca 1*/
 }
 
 void drawWall(int p){
-    /*iscrtavamo zidove (tragove) igraca, za to ukljucujemo BLENG i ALPHA */
+    /*iscrtavamo zidove (tragove) igraca, za to ukljucujemo BLEND i ALPHA */
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
+    glLineWidth(5);
     /*igrac 1*/
     if(p==1){
         glColor4f(0.93, 0.16, 0.22, 0.7);
         int i = 0;
-        glBegin(GL_TRIANGLES);
-                while(i < tackaP1){
-                    glVertex3f(zidP1[i].x, 0, zidP1[i].z);
-                    glVertex3f(zidP1[i].x, 0.7, zidP1[i].z);
-                    /*ako smo dosli do poslednje dodate tacke u niz, nju spajamo sa trenutnom pozicijom igraca*/
-                    i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
+        while(i < tackaP1){
+            glBegin(GL_TRIANGLES);
 
+            glVertex3f(zidP1[i].x, 0, zidP1[i].z);
+            glVertex3f(zidP1[i].x, 0.5, zidP1[i].z);
+            /*ako smo dosli do poslednje dodate tacke u niz, nju spajamo sa trenutnom pozicijom igraca*/
+            i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
 
-                    i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
-                    i == tackaP1 -1 ? glVertex3f(xP1, 0.7, zP1): glVertex3f(zidP1[i+1].x, 0.7, zidP1[i+1].z);
-                    glVertex3f(zidP1[i].x, 0.7, zidP1[i].z);
+            i == tackaP1 -1 ? glVertex3f(xP1, 0, zP1): glVertex3f(zidP1[i+1].x, 0, zidP1[i+1].z);
+            i == tackaP1 -1 ? glVertex3f(xP1, 0.5, zP1): glVertex3f(zidP1[i+1].x, 0.5, zidP1[i+1].z);
+            glVertex3f(zidP1[i].x, 0.5, zidP1[i].z);
 
-                    i++;
-                    }
-        glEnd();
+            glEnd();
+
+            /*linije iscrtavamo jer se iz nekih uglova zid ne vidi (kad se gleda pravo odozgo na njega) */
+            glBegin(GL_LINES);
+
+            glVertex3f(zidP1[i].x, 0.5, zidP1[i].z);
+            /*ako smo dosli do poslednje dodate tacke u niz, nju spajamo sa trenutnom pozicijom igraca*/
+            i == tackaP1 -1 ? glVertex3f(xP1, 0.5, zP1): glVertex3f(zidP1[i+1].x, 0.5, zidP1[i+1].z);
+
+            glEnd();
+            i++;
+        }
     }
 
     /*igrac 2*/
     if(p==2){
-        glColor4f(0.65,0.96,0.20, 0.7);
-
+        glColor4f(0.16,0.53,0.78, 0.7);
         int i = 0;
-        glBegin(GL_TRIANGLES);
         while(i < tackaP2){
+            glBegin(GL_TRIANGLES);
             glVertex3f(zidP2[i].x, 0, zidP2[i].z);
-            glVertex3f(zidP2[i].x, 0.7, zidP2[i].z);
+            glVertex3f(zidP2[i].x, 0.5, zidP2[i].z);
             /*ako smo dosli do poslednje tacke dodate u niz, nju spajamo sa trenutnom pozicijom igraca*/
             i == tackaP2 -1 ? glVertex3f(xP2, 0, zP2): glVertex3f(zidP2[i+1].x, 0, zidP2[i+1].z);
 
             i == tackaP2 -1 ? glVertex3f(xP2, 0, zP2): glVertex3f(zidP2[i+1].x, 0, zidP2[i+1].z);
-            i == tackaP2 -1 ? glVertex3f(xP2, 0.7, zP2): glVertex3f(zidP2[i+1].x, 0.7, zidP2[i+1].z);
-            glVertex3f(zidP2[i].x, 0.7, zidP2[i].z);
+            i == tackaP2 -1 ? glVertex3f(xP2, 0.5, zP2): glVertex3f(zidP2[i+1].x, 0.5, zidP2[i+1].z);
+            glVertex3f(zidP2[i].x, 0.5, zidP2[i].z);
+
+            glEnd();
+            /*linije iscrtavamo jer se iz nekih uglova zid ne vidi (kad se gleda pravo odozgo na njega) */
+            glBegin(GL_LINES);
+
+            glVertex3f(zidP2[i].x, 0.5, zidP2[i].z);
+            /*ako smo dosli do poslednje dodate tacke u niz, nju spajamo sa trenutnom pozicijom igraca*/
+            i == tackaP2 -1 ? glVertex3f(xP2, 0.5, zP2): glVertex3f(zidP2[i+1].x, 0.5, zidP2[i+1].z);
+
+            glEnd();
 
             i++;
         }
-        glEnd();
     }
+}
+
+void displayPlayer(int player){
+    /*iscrtavanje poruke da je neki (pokazuje i koji) od igraca pobedio*/
+    if(player == 1){
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, player1);
+
+        glBegin(GL_QUADS);
+        glNormal3f(0, 1, 0);
+
+        glTexCoord2f(0, 0);
+        glVertex3f(-50, 0, -90);
+
+        glTexCoord2f(1, 0);
+        glVertex3f(-50, 0, 90);
+
+        glTexCoord2f(1, 1);
+        glVertex3f(50, 0, 90);
+
+        glTexCoord2f(0, 1);
+        glVertex3f(50, 0, -90);
+        glEnd();
+
+    }
+
+    if(player == 2){
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, player2);
+
+        glBegin(GL_QUADS);
+        glNormal3f(0, 1, 0);
+
+        glTexCoord2f(0, 0);
+        glVertex3f(-50, 0, -90);
+
+        glTexCoord2f(1, 0);
+        glVertex3f(-50, 0, 90);
+
+        glTexCoord2f(1, 1);
+        glVertex3f(50, 0, 90);
+
+        glTexCoord2f(0, 1);
+        glVertex3f(50, 0, -90);
+        glEnd();
+
+    }
+
+    glDisable(GL_TEXTURE_2D);
+}
+
+void loadTextures(){
+
+    /* Ukljucuju se teksture. */
+    glEnable(GL_TEXTURE_2D);
+
+    glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+
+    zid = SOIL_load_OGL_texture("./Images/rim_wall.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+    if(zid == 0){
+        printf("Zid nije ucitan\n %s \n", SOIL_last_result());
+        exit(EXIT_FAILURE);
+    }
+
+    /*prva tekstura, za zid*/
+    glBindTexture(GL_TEXTURE_2D, zid);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+    pod = SOIL_load_OGL_texture("./Images/floor.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+    if(pod == 0){
+        printf("Pod nije ucitan\n %s\n", SOIL_last_result());
+        exit(EXIT_FAILURE);
+    }
+
+    glBindTexture(GL_TEXTURE_2D, pod);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+
+    player1 = SOIL_load_OGL_texture("./Images/p1.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+    if(player1 == 0){
+        printf("P1 nije ucitan\n %s\n", SOIL_last_result());
+        exit(EXIT_FAILURE);
+    }
+
+    glBindTexture(GL_TEXTURE_2D, player1);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+
+    player2 = SOIL_load_OGL_texture("./Images/p2.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+    if(player2 == 0){
+        printf("P2 nije ucitan\n %s\n", SOIL_last_result());
+        exit(EXIT_FAILURE);
+    }
+
+    glBindTexture(GL_TEXTURE_2D, player2);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+    /* Iskljucujemo aktivnu teksturu */
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+
 }
