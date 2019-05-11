@@ -27,21 +27,31 @@ void display();
 void drawWall(int);
 void displayPlayer(int);
 void loadTextures();
-
-/*imena tekstura*/
-GLuint zid, pod, player1, player2;
-
-/*koeficijent kretanja 0,1,2,3 u zavisnosti da li se x ili z koordinata smanjuje ili povecava*/
-unsigned int koefKretanjaP1, koefKretanjaP2;
+void checkCollision();
+void initMatrix();
 
 /*struktura za x i z koordinate zida (traga)*/
 typedef struct {
     float x;
     float z;
 } Zid;
+/*imena tekstura*/
+GLuint zid, pod, player1, player2, commands;
+
+/*koeficijent kretanja 0,1,2,3 u zavisnosti da li se x ili z koordinata smanjuje ili povecava*/
+unsigned int koefKretanjaP1, koefKretanjaP2;
+
+/*promenljive za oznaku pobednika i oznaku za krkaj*/
+int winner, end;
+
+/*matrica kkolizije 1-ima zid (nas, protivnokov, zid od arene), 0-nema zid, opseg koordinata je [-50,50], stoga 101 polje, gde su krajna polja 1*/
+unsigned int collisionMatrix[101][101];
 
 /*dimenzije prozora*/
 int widthP, heightP;
+
+/*parametar za priblizavanje kamere koja gleda u teksturu pobednika*/
+int cameraParam;
 
 /*stepen rotacije, x koordinata, z koordinata za igraca 1, zatim za igraca 2*/
 float rotateP1, xP1, zP1, rotateP2, xP2, zP2;
@@ -128,7 +138,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
         case 32:
             /*space -> pauza/start, ide naizmenicno, pa je resenje mod 2*/
             animation_active = (animation_active+1)%2;
-            if(animation_active)
+            if(animation_active || end)
                 glutTimerFunc(TIMER_INTERVAL, on_timer, TIMER_ID);
         default:
             break;
@@ -179,13 +189,24 @@ static void on_timer(int value) {
         return;
 
     if(animation_active){
-        /*nove koordinate igraca, u odnosu na to da li je skrenuo ili ne*/
-        xP1 += sin(M_PI/2 * rotateP1/90);
-        zP1 += cos(M_PI/2 * rotateP1/90);
 
-        xP2 += sin(M_PI/2 * rotateP2/90);
-        zP2 -= cos(M_PI/2 * rotateP2/90);
+        if(!end) {
+            /*nove koordinate igraca, u odnosu na to da li je skrenuo ili ne*/
 
+            xP1 += sin(M_PI / 2 * rotateP1 / 90);
+            zP1 += cos(M_PI / 2 * rotateP1 / 90);
+
+            xP2 += sin(M_PI / 2 * rotateP2 / 90);
+            zP2 -= cos(M_PI / 2 * rotateP2 / 90);
+
+            checkCollision();
+        }
+
+        /*ako je kraj, onda prikazujemo sliku pobednika tako sto priblizavamo kameru*/
+        if(end == 1 && cameraParam < 1400){
+                /*uvecavamo parametar po kom se kamera priblizava slici pobednika*/
+                cameraParam+=100;
+        }
         /* Forsira se ponovno iscrtavanje prozora. */
         glutPostRedisplay();
     }
@@ -227,14 +248,22 @@ void initialize() {
     tackaP2 = 0;
 
     zidP1[tackaP1].x = xP1;
-    zidP1[tackaP1].z = zP1-1;
+    zidP1[tackaP1].z = zP1-2;
 
     zidP2[tackaP2].x = xP2;
-    zidP2[tackaP2].z = zP2+1;
+    zidP2[tackaP2].z = zP2+2;
 
     /*pomeramo se za jedno mesto u zidu*/
     tackaP1++;
     tackaP2++;
+
+
+    /*podesavamo inicijalne vrednosti za kameru pobednika, da nije kraj i da nema pobednika,
+     * matrica kolizije se postavlja da ima jedinice samo na mestima gde je zid arene*/
+    cameraParam = 0;
+    end = 0;
+    winner = 0;
+    initMatrix();
 
     /*ucitavamo teksture koje su nam potrebne*/
     loadTextures();
@@ -279,16 +308,19 @@ static void on_display(void) {
         gluLookAt(xP1-3, 3, zP1+1, xP1+10, 0, zP1, 0, 1, 0);
     display();
 
-    /*dva probna viewporta, na kojima se trenutno nalaze poruke da je neki od igraca pobedio*/
+    /*viewport u kom se nalazi obavestanje da je prvi igrac pobedio*/
     glViewport(0,0, widthP/2, heightP/2);
     glLoadIdentity();
-    gluLookAt(0,100,0, 0,0,0, 1,0,0);
-    displayPlayer(1);
+    gluLookAt(0,1500-cameraParam, 0, 0,0,0, 1,0,0);
+    if(winner == 2)
+        displayPlayer(2);
 
+    /*viewport u kom se nalazi obavestenje da je drugi igrac pobedio */
     glViewport(widthP/2,heightP/2, widthP/2, heightP/2);
     glLoadIdentity();
-    gluLookAt(0,100,0, 0,0,0, 1,0,0);
-    displayPlayer(2);
+    gluLookAt(0,1500-cameraParam,0, 0,0,0, 1,0,0);
+    if(winner == 1)
+        displayPlayer(1);
 
     /* Postavlja se nova slika u prozor. */
     glutSwapBuffers();
@@ -507,7 +539,6 @@ void displayPlayer(int player){
             glTexCoord2f(0, 1);
             glVertex3f(50, 0, -90);
         glEnd();
-
     }
 
     if(player == 2){
@@ -529,7 +560,6 @@ void displayPlayer(int player){
             glTexCoord2f(0, 1);
             glVertex3f(50, 0, -90);
         glEnd();
-
     }
 
     glDisable(GL_TEXTURE_2D);
@@ -615,6 +645,59 @@ void loadTextures(){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
+
+    /*ucitavanje teksture za obavestenje da je drugi igrac pobedio*/
+    commands = SOIL_load_OGL_texture("./Images/commands.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+
+    /*provera da li je dobro ucitana tekstura*/
+    if(commands == 0){
+        printf("Commands nije ucitana struktura\n %s\n", SOIL_last_result());
+        exit(EXIT_FAILURE);
+    }
+
+    /*podesavanje parametara*/
+    glBindTexture(GL_TEXTURE_2D, commands);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D,
+                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+
     /* Iskljucujemo aktivnu teksturu */
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void initMatrix(){
+    /*inicijaluzujemo matricu kolizije, da ima jedinice samo na mestima gde je zid arene*/
+    for(int i = 0; i < 101; i++){
+        for(int j = 0; j < 101; j++){
+            if(i == 0 || j == 0 || i == 100 || j == 100)
+                collisionMatrix[i][j] = 1;
+            else
+                collisionMatrix[i][j] = 0;
+        }
+    }
+    /*pocetna polja igraca, takodje oznacavamo jedinicama*/
+    collisionMatrix[(int)xP1][(int)zP1] = 1;
+    collisionMatrix[(int)xP2][(int)zP2] = 1;
+}
+
+void checkCollision(){
+    int x1 = (int)xP1, z1 = (int)zP1, x2 = (int)xP2, z2 = (int)zP2;
+    /*za svaki pokret igraca, proveravamo da li je polje na koje ide
+     * zauzeto, ako jeste proglasavamo kraj i protivnika za pobednika
+     * ako nije, onda mu dopustamo da prodje tim poljem*/
+    if(collisionMatrix[x1+50][z1+50] == 1){
+        end = 1;
+        winner = 2;
+    } else
+        collisionMatrix[x1+50][z1+50] = 1;
+
+    if(collisionMatrix[x2+50][z2+50] == 1){
+        end = 1;
+        winner = 1;
+    } else
+        collisionMatrix[x2+50][z2+50] = 1;
 }
