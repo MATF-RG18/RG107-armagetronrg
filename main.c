@@ -36,7 +36,7 @@ typedef struct {
     float z;
 } Zid;
 /*imena tekstura*/
-GLuint zid, pod, player1, player2, commands;
+GLuint zid, pod, player1, player2;
 
 /*koeficijent kretanja 0,1,2,3 u zavisnosti da li se x ili z koordinata smanjuje ili povecava*/
 unsigned int koefKretanjaP1, koefKretanjaP2;
@@ -644,26 +644,6 @@ void loadTextures(){
                     GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-
-    /*ucitavanje teksture za obavestenje da je drugi igrac pobedio*/
-    commands = SOIL_load_OGL_texture("./Images/commands.png", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
-
-    /*provera da li je dobro ucitana tekstura*/
-    if(commands == 0){
-        printf("Commands nije ucitana struktura\n %s\n", SOIL_last_result());
-        exit(EXIT_FAILURE);
-    }
-
-    /*podesavanje parametara*/
-    glBindTexture(GL_TEXTURE_2D, commands);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D,
-                    GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
 
     /* Iskljucujemo aktivnu teksturu */
     glBindTexture(GL_TEXTURE_2D, 0);
