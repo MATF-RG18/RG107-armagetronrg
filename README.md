@@ -1,4 +1,4 @@
-# ArmagetronRG
+# ArmagetronRG 🏍️
 
 >Armagetron je igrica u kojoj je cilj navesti protivnika da predje preko svog ili vašeg traga (udari u zid). Ova "replika" je namenjena striktno za dva igrača.
 
