@@ -41,10 +41,10 @@ GLuint zid, pod, player1, player2;
 /*koeficijent kretanja 0,1,2,3 u zavisnosti da li se x ili z koordinata smanjuje ili povecava*/
 unsigned int koefKretanjaP1, koefKretanjaP2;
 
-/*promenljive za oznaku pobednika i oznaku za krkaj*/
+/*promenljive za oznaku pobednika i oznaku za kraj*/
 int winner, end;
 
-/*matrica kkolizije 1-ima zid (nas, protivnokov, zid od arene), 0-nema zid, opseg koordinata je [-50,50], stoga 101 polje, gde su krajna polja 1*/
+/*matrica kolizije 1-ima zid (nas, protivnokov, zid od arene), 0-nema zid, opseg koordinata je [-50,50], stoga 101 polje, gde su krajna polja 1*/
 unsigned int collisionMatrix[101][101];
 
 /*dimenzije prozora*/
@@ -106,7 +106,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
         case 'a':
         case 'A':
             /*p2 skreni levo, ubaci koordinate tacke skretanja u niz za zid*/
-            if(animation_active){
+            if(animation_active  && end == 0){
                 rotateP2 -= 90;
                 rotateP2 = (int)rotateP2 % 360;
                 zidP2[tackaP2].x = xP2;
@@ -119,7 +119,7 @@ static void on_keyboard(unsigned char key, int x, int y) {
         case 'd':
         case 'D':
             /*p2 skreni desno, ubaci koordinate tacke skretanja u niz za zid*/
-            if(animation_active){
+            if(animation_active  && end == 0){
                 rotateP2 += 90;
                 rotateP2 = (int)rotateP2 % 360;
                 zidP2[tackaP2].x = xP2;
@@ -155,7 +155,7 @@ static void on_keyboardSpecial(int key, int x, int y) {
 
         case GLUT_KEY_LEFT:
             /*p1 skreni levo, dodaj tacku skretanja u niz za zid*/
-            if (animation_active){
+            if (animation_active  && end == 0){
                 rotateP1 += 90;
                 rotateP1 = (int)rotateP1 % 360;
                 zidP1[tackaP1].x = xP1;
@@ -168,7 +168,7 @@ static void on_keyboardSpecial(int key, int x, int y) {
 
         case GLUT_KEY_RIGHT:
             /*p1 skreni desno, dodaj tacku skretanja u niz za zid*/
-            if (animation_active){
+            if (animation_active && end == 0){
                 rotateP1 -= 90;
                 rotateP1 = (int)rotateP1 % 360;
                 zidP1[tackaP1].x = xP1;
